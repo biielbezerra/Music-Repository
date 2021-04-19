@@ -1,12 +1,26 @@
 package music
 
-class Musica : Artista() {
+import kotlin.random.Random
 
-    var link: String? = null
-    var duracao: String? = null
-    var compositores: String? = null
-    var genero: String? = null
-    var performance: String? = null
+class Musica : Lancamento() {
 
-    //imagem
+    var idMusica: Int? = null
+    var album: Album? = Album()
+
+
+    override fun editar(nome: String, link: String,editID: Int,objectID: Int,genero: String,descricao: String,compositores: String,lista: Listagem,duracao: String, produtor: String, capa: String) {
+        val idFinderAlbum: Album? = lista.albunsMutableList.find { it.idAlbum == editID }
+        val idFinderMusica: Musica? = lista.musicasMutableList.find { it.idMusica == objectID }
+
+        idFinderMusica?.artista = idFinderAlbum?.artista
+        idFinderMusica?.album = idFinderAlbum
+        idFinderMusica?.nome = nome
+        idFinderMusica?.link = link
+        idFinderMusica?.compositores = compositores
+        idFinderMusica?.genero = genero
+        idFinderMusica?.descricao = descricao
+        idFinderMusica?.capa = capa
+    }
+
+
 }
